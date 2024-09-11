@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>4.数据库的基本概念、MySQL、SQL学习 | 李熙</title><meta name="author" content="sws"><meta name="copyright" content="sws"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据库的基本概念、MySQL、SQL学习1.数据库的基本概念1.数据库的英文单词：DataBase   简称：DB 2.什么是数据库？：用于存储和管理数据的仓库 3.数据库的特点： (1)持久化存储数据的。其实数据库就是一个文件系统 (2)方便存储和管理数据 (3)使用了统一的方式操作数据库   —SQL 4.常见的数据库软件： MySQL Oracle MySQL配置：MySQL服务启动1.手动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.数据库的基本概念、MySQL、SQL学习">
+<meta property="og:url" content="http://example.com/2024/09/11/4-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81MySQL%E3%80%81SQL%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="李熙">
+<meta property="og:description" content="数据库的基本概念、MySQL、SQL学习1.数据库的基本概念1.数据库的英文单词：DataBase   简称：DB 2.什么是数据库？：用于存储和管理数据的仓库 3.数据库的特点： (1)持久化存储数据的。其实数据库就是一个文件系统 (2)方便存储和管理数据 (3)使用了统一的方式操作数据库   —SQL 4.常见的数据库软件： MySQL Oracle MySQL配置：MySQL服务启动1.手动">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2024-09-11T10:56:15.000Z">
+<meta property="article:modified_time" content="2024-09-11T11:02:03.967Z">
+<meta property="article:author" content="sws">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/09/11/4-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81MySQL%E3%80%81SQL%E5%AD%A6%E4%B9%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '4.数据库的基本概念、MySQL、SQL学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-11 19:02:03'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/tx.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标题</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="李熙"><span class="site-name">李熙</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标题</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">4.数据库的基本概念、MySQL、SQL学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-09-11T10:56:15.000Z" title="Created 2024-09-11 18:56:15">2024-09-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-09-11T11:02:03.967Z" title="Updated 2024-09-11 19:02:03">2024-09-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="4.数据库的基本概念、MySQL、SQL学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="数据库的基本概念、MySQL、SQL学习"><a href="#数据库的基本概念、MySQL、SQL学习" class="headerlink" title="数据库的基本概念、MySQL、SQL学习"></a>数据库的基本概念、MySQL、SQL学习</h1><h3 id="1-数据库的基本概念"><a href="#1-数据库的基本概念" class="headerlink" title="1.数据库的基本概念"></a>1.数据库的基本概念</h3><p>1.数据库的英文单词：DataBase   简称：DB</p>
+<p>2.什么是数据库？：用于存储和管理数据的仓库</p>
+<p>3.数据库的特点：</p>
+<p>(1)持久化存储数据的。其实数据库就是一个文件系统</p>
+<p>(2)方便存储和管理数据</p>
+<p>(3)使用了统一的方式操作数据库   —SQL</p>
+<p>4.常见的数据库软件：</p>
+<p>MySQL</p>
+<p>Oracle</p>
+<h3 id="MySQL配置："><a href="#MySQL配置：" class="headerlink" title="MySQL配置："></a>MySQL配置：</h3><h5 id="MySQL服务启动"><a href="#MySQL服务启动" class="headerlink" title="MySQL服务启动"></a>MySQL服务启动</h5><p>1.手动</p>
+<p>2.cmd–&gt;services.msc 打开服务的窗口</p>
+<p>3.使用管理员打开cmd</p>
+<p>​			net start mysql80:启动mysql80的服务</p>
+<p>​			net stopmysql:关闭mysql80服务</p>
+<h5 id="MySQL登录"><a href="#MySQL登录" class="headerlink" title="MySQL登录"></a>MySQL登录</h5><p>1.mysql-uroot-p密码</p>
+<p>2.mysql–hip-uroot-p连接目标的密码</p>
+<p>3.mysql–host-ip–user&#x3D;root–password&#x3D;连接目标的密码</p>
+<h5 id="MySQL退出"><a href="#MySQL退出" class="headerlink" title="MySQL退出"></a>MySQL退出</h5><p>exit</p>
+<p>quit</p>
+<h3 id="MySQL目录结构"><a href="#MySQL目录结构" class="headerlink" title="MySQL目录结构"></a>MySQL目录结构</h3><p>1.MySQL安装目录</p>
+<p>​		配置文件my.ini</p>
+<p>2.MySQL数据目录</p>
+<p>​		几个概念</p>
+<p>​				数据库：文件夹</p>
+<p>​				表：文件</p>
+<p>​				数据：数据</p>
+<h3 id="SQL"><a href="#SQL" class="headerlink" title="#SQL"></a>#SQL</h3><h5 id="1-什么是SQL？"><a href="#1-什么是SQL？" class="headerlink" title="1.什么是SQL？"></a>1.什么是SQL？</h5><p>Structured Query Language：结构化查询语言</p>
+<p>其实就是定义了操作所有关系型数据库的规则。每一种数据库操作的方式存在不一样的地方，称为”方言”</p>
+<h5 id="2-SQL通用语法"><a href="#2-SQL通用语法" class="headerlink" title="2.SQL通用语法"></a>2.SQL通用语法</h5><p>(1)SQL语句可以单行或多行书写，以分号结尾</p>
+<p>(2)可使用空格和缩进来增强语句的可读性</p>
+<p>(3)MySQL数据库的SQL语句不区分大小写，关键字建议使用大写。</p>
+<p>(4)3种注释：</p>
+<p>​			单行注释：–  注释内容或#注释内容(MySQL特有)(注意：–后要加空格 ；#后不需要)</p>
+<p>​			多行注释：&#x2F;*   注释   *&#x2F;</p>
+<h5 id="3-SQL的分类"><a href="#3-SQL的分类" class="headerlink" title="3.SQL的分类"></a>3.SQL的分类</h5><p>1）DDL(Data Definition Language)数据定义语言</p>
+<p>用来定义数据库对象：数据库，表，列等。关键字：create,drop,alter等</p>
+<p>2）DML(Data Manipulation Language)数据操作语言</p>
+<p>用来对数据库中表的数据进行增删改。关键字：insert,delete,update等</p>
+<p>3）DQL(Data Query Language)数据查询语言</p>
+<p>用来查询数据库中表的记录(数据)。关键字：select,where等</p>
+<p>4）DCL(Data  Control Language)数据控制语言(了解)</p>
+<p>用来定义数据库的访问权限和安全级别，及创建用户。关键字:GRANT,REVOKE等</p>
+<h3 id="DDL-操作数据库、表"><a href="#DDL-操作数据库、表" class="headerlink" title="##DDL:操作数据库、表"></a>##DDL:操作数据库、表</h3><h4 id="1-操作数据库：CRUD"><a href="#1-操作数据库：CRUD" class="headerlink" title="1.操作数据库：CRUD"></a>1.操作数据库：CRUD</h4><p>1）C(create):创建</p>
+<p>​		创建数据库：create database  数据库名称</p>
+<p>​		创建数据库，判断不存在，再创建：create database if not exists 数据库名称</p>
+<p>​		创建数据库，并指定字符集：create database 数据库名称 character set 数据库名称</p>
+<p>练习：创建db1数据库，判断书否存在，并指定字符集为gbk</p>
+<p>create database if not exists db1 character set gbk</p>
+<p>2） R(Retrieve):查询</p>
+<p>查询所有数据的名称；</p>
+<p>show databases；</p>
+<p>查询某个数据库的字符集：查询某个数据库的创建语句</p>
+<p>show create database 数据库名称</p>
+<p>3） U(Update)：修改</p>
+<p>修改数据库的字符集：alter database 数据库名称  character set 字符集名称；</p>
+<p>4） D(Delete):删除</p>
+<p>删除数据库 ：drop database 数据库名称；</p>
+<p>判断数据库存在，存在再删除：drop database if exists 数据库名称；</p>
+<p>5） 使用数据库</p>
+<p>查询当前正在使用的数据库名称</p>
+<p>select database();</p>
+<p>使用数据库</p>
+<p>use 数据库名称；</p>
+<h4 id="2-操作表"><a href="#2-操作表" class="headerlink" title="2.操作表"></a>2.操作表</h4><p>1）C(create):创建</p>
+<p>create table  表名(列名1   列类型名，列名2   列类型2，列名3   列类型3)；</p>
+<p>create  table 表名  like表名   复制like后的表</p>
+<p>2）R(Retrieve):查询</p>
+<p>查询某个数据库中所有表的名称</p>
+<p>show tables；</p>
+<p>查询表结构</p>
+<p>desc 表名；</p>
+<p>3）U(Update)：修改</p>
+<p>1.修改表名：alter table 表名 rename to 新的表名</p>
+<p>2.修改表的字符集：alter table 表名 character set 字符集名称；</p>
+<p>3.添加一列：alter table 表名 add 列名 数据类型；</p>
+<p>4.修改列名称   类型</p>
+<p>alter table 表名  change 列名  新列名 数据类型；</p>
+<p>alter table 表名  modify  列名 新数据类型；</p>
+<p>5.删除列：alter table 表名  drop 列名；</p>
+<p>4）D(Delete):删除</p>
+<p>drop table 表名；</p>
+<p>drop table if exists 表名；</p>
+<h3 id="DML：增删改表中数据"><a href="#DML：增删改表中数据" class="headerlink" title="##DML：增删改表中数据"></a>##DML：增删改表中数据</h3><h5 id="1-添加数据："><a href="#1-添加数据：" class="headerlink" title="1.添加数据："></a>1.添加数据：</h5><p>Insert into 表名(列名1，列名2，列名3…列名n) values(数据1，数据2，数据3…数据n)；</p>
+<p>列名和值要一一对应</p>
+<p>如果表名后，不定义列名，则默认给所有列添加值(insert into 表名 value (值1，值2…值n))；</p>
+<p>除了数字类型，其他类型都需要使用引号引起来（单双引号都可以）</p>
+<h5 id="2-删除数据"><a href="#2-删除数据" class="headerlink" title="2.删除数据"></a>2.删除数据</h5><p>delete from 表名[where 条件]；</p>
+<p>如果不加条件，将删除表中所有记录</p>
+<p>如果要删除所有记录：</p>
+<p>delete from 表名；有多少条记录，执行多少次</p>
+<p>TRUNCATE TABLE 表名；删除表，并建立一个一样的表</p>
+<h5 id="3-修改数据"><a href="#3-修改数据" class="headerlink" title="3.修改数据"></a>3.修改数据</h5><p>update 表名 set 列名1&#x3D;值1，列名2&#x3D;值2…列名n&#x3D;值n；</p>
+<p>update 表名 set 列名1&#x3D;值1，列名2&#x3D;值2…列名n&#x3D;值n where[条件]；</p>
+<p>如果不加条件，则会将所有记录都修改</p>
+<h3 id="DQL-查询表中的记录"><a href="#DQL-查询表中的记录" class="headerlink" title="##DQL:查询表中的记录"></a>##DQL:查询表中的记录</h3><p>Select * from 表名；</p>
+<h5 id="1-语法"><a href="#1-语法" class="headerlink" title="1.语法"></a>1.语法</h5><p>select 字段列表 from 表名列表 where 条件列表  group by 分组字段  having 分组之后的条件  order by 排序 limit 分页限定</p>
+<h5 id="2-基础查询："><a href="#2-基础查询：" class="headerlink" title="2.基础查询："></a>2.基础查询：</h5><p>1)多个字段的查询</p>
+<p>select 字段名1，字段名2… from 表名；</p>
+<p>如果查询所有字段，则可以使用*来替代字段列表</p>
+<p>2)去除重复</p>
+<p>distinct 在字段名前使用</p>
+<p>3)计算列</p>
+<p>一般可以使用四则运算计算一些列的值。(一般只会进行数据型的计算)</p>
+<p>ifnull(表达式1，表达式2)：null参与的运算，计算机结果都为null</p>
+<p>表达式1：哪个字段需要判断是否为null</p>
+<p>如果该字段为null，则替换表达式2为值</p>
+<p>4)起别名</p>
+<p>as 别名：as可以省略</p>
+<p>selesc name，math+English AS 总分 from Student；</p>
+<h5 id="3-条件查询"><a href="#3-条件查询" class="headerlink" title="3.条件查询"></a>3.条件查询</h5><p>1）where子句后跟条件</p>
+<p>2）运算符</p>
+<p>​	&gt; 、&lt;、&lt;&#x3D;、&gt;&#x3D;、&#x3D;、&lt;&gt;</p>
+<p>​	Between … AND  age&gt;&#x3D;10 AND age&lt;&#x3D;50;  age between 10 and 50; </p>
+<p>​	In(集合)：age&#x3D;10 or age&#x3D;30 or age&#x3D;66;  age  in(10,30,66);</p>
+<p>​	like:模糊查询：</p>
+<p>​	%:代表全部</p>
+<p>​	_：代表一个</p>
+<p>select  *from student where name like “马%”;</p>
+<p>select  *from student where name like “<em>马</em>“;</p>
+<p>​	IS NULL、IS NOT NULL   是否为null值</p>
+<p>​	and或 &amp;&amp;</p>
+<p>​	or或||</p>
+<p>​	not或！</p>
+<h5 id="4-排序查询"><a href="#4-排序查询" class="headerlink" title="4.排序查询"></a>4.排序查询</h5><p>order by 子句  </p>
+<p>order by排序字段1，排序方式，排序字段2，排序方式2…;</p>
+<p>排序方式：</p>
+<p>ASC：升序，默认</p>
+<p>DESC：降序</p>
+<p>select * from student order by math ,english DESC;</p>
+<p>先判断math升序在判断english降序</p>
+<h5 id="5-聚合函数"><a href="#5-聚合函数" class="headerlink" title="5.聚合函数"></a>5.聚合函数</h5><p>将一列数据作为一个整数，进行纵向的计算</p>
+<p>count：计算个数</p>
+<p>一般计算非空字段</p>
+<p>count(*);计算表里的总的人数</p>
+<p>max：计算最大值</p>
+<p>min：计算最小值</p>
+<p>sum：求和</p>
+<p>avg计算平均值</p>
+<p>聚合函数的计算会排除null值</p>
+<p>ISNULL：select count(ISNULL(english));</p>
+<h5 id="6-分组查询"><a href="#6-分组查询" class="headerlink" title="6.分组查询"></a>6.分组查询</h5><p>group by  分组字段</p>
+<p>注意：分组之后查询的字段：分组字段、聚合函数</p>
+<p>where 和having的区别：</p>
+<p>where在分组之前进行限定，如果不满足条件，则不参与分组。having在分组之后进行限定，如果不满足结果，则不会被查询出来</p>
+<p>where后不可以跟聚合函数，having可以进行聚合函数的判断</p>
+<h5 id="7-分页查询"><a href="#7-分页查询" class="headerlink" title="7.分页查询"></a>7.分页查询</h5><p>limit 开始的索引，每页查询的条数；</p>
+<p>开始的索引&#x3D;(当前的页码-1）*每页显示的条数</p>
+<p>select * From student limit 0,3;</p>
+<p>select * From student limit 3,3;</p>
+<p>select * From student limit 6,3;</p>
+<p>limit 是一个MySQL”方言“</p>
+<h5 id="8-约束"><a href="#8-约束" class="headerlink" title="8.约束"></a>8.约束</h5><p>概念：对表中的数据进行限定，保证数据的正确性、有效性和完整性</p>
+<p>分类：</p>
+<h6 id="1）主键约束-primary-key"><a href="#1）主键约束-primary-key" class="headerlink" title="1）主键约束 primary key"></a>1）主键约束 primary key</h6><p>注意：非空，且唯一</p>
+<p>一张表只能有一个字段为主键</p>
+<p>主键就是表中记录的唯一标识</p>
+<p>在创建表时，添加主键约束</p>
+<p>create table stu(id int primary key ,name varchar(20),age int);</p>
+<p>删除主键：</p>
+<p>Alter table stu drop primary key;</p>
+<p>创建完成后，添加主键</p>
+<p>Alter table stu modify id int primary key;</p>
+<p>自动增长：</p>
+<p>如果某一列是是指类型的，使用auto_increament 可以完成值得自动增长</p>
+<p>create table stu(id int primary key auto_increament);</p>
+<p>删除自动增长：alter table stu modify id int;</p>
+<p>添加自动增长 ：alter table stu modify id int auto_increamment</p>
+<h6 id="2）非空约束-not-null"><a href="#2）非空约束-not-null" class="headerlink" title="2）非空约束 not null"></a>2）非空约束 not null</h6><p>创建表时，添加约束</p>
+<p>create table stu(id int,name varchar(32) not null);</p>
+<p>创建表完后，添加非空约束</p>
+<p>alter table stu modify name varchar(32) not null;</p>
+<p>删除name的非空约束</p>
+<p>alter table stu modify name varchar(20);</p>
+<h6 id="3）唯一约束-unique-某一列不能重复"><a href="#3）唯一约束-unique-某一列不能重复" class="headerlink" title="3）唯一约束 unique  某一列不能重复"></a>3）唯一约束 unique  某一列不能重复</h6><p>创建表时，添加约束</p>
+<p>create table stu(id int ,name varchar(20),phoneid varchar(20) unique);</p>
+<p>删除唯一约束：</p>
+<p>Alter table stu drop index phoneid;</p>
+<p>在表创建完后，添加唯一约束</p>
+<p>Alter Table  stu modify phoneid varchar(20) unique;</p>
+<p>注意：唯一约束可以有null值，但只能有一个</p>
+<h6 id="4）外键约束-foreign-key"><a href="#4）外键约束-foreign-key" class="headerlink" title="4）外键约束 foreign key"></a>4）外键约束 foreign key</h6><p>create table 表名(</p>
+<p>​	…..</p>
+<p>外键列</p>
+<p>constaraint 外键名称 foreign key(外键列名称) references 主表名称(主表列名称)</p>
+<p>)；</p>
+<p>删除外键：Alter table stu drop foreign key 外键名；</p>
+<p>创建表后添加外键</p>
+<p>alter  table stu  add constraint 外键字段 Foreign key (外键列字段) References 主表列名称;</p>
+<p>级联操作：添加级联操作</p>
+<p>语法：Alter table 表名 add constraint 外键名称 Foreign key (外键字段名称) references 主表名称(主表列名称)      </p>
+<p>on update cascade &#x2F;on Delete cascade；</p>
+<p>级联更新：on update cascade</p>
+<p>级联删除：on delete cascade</p>
+<h3 id="数据库的设计"><a href="#数据库的设计" class="headerlink" title="数据库的设计"></a>数据库的设计</h3><h5 id="1-多表之间的关系"><a href="#1-多表之间的关系" class="headerlink" title="1.多表之间的关系"></a>1.多表之间的关系</h5><p>一对一： 人和身份证</p>
+<p>分析：一个人只有一个身份证，一个身份证只能对应一个人</p>
+<p>实现方式：一对一关系实现，可以在任意一方添加唯一外键指向另一方主键</p>
+<p>一对多(多对一) 部门和员工</p>
+<p>分析：一个部门有多个员工，一个员工只能对应一个部门</p>
+<p>实现方式：在多个一方建立外键，指向一的一方的主键</p>
+<p>多对多：学生和课程</p>
+<p>分析：一个学生可以选择很多门课程，一个课程也可以被很多学生选择、</p>
+<p>实现方式：多对多关系实现西药借助第张中间表</p>
+<p>中间表至少包含两个字段，这两个字段作为第三张表的的外键，分别直线两种表的主键(联合主键)</p>
+<p>联合主键 ：primary key(字段1，字段2….);</p>
+<h5 id="2-数据库设计的范式："><a href="#2-数据库设计的范式：" class="headerlink" title="2.数据库设计的范式："></a>2.数据库设计的范式：</h5><p>概念：设计数据库时，需要遵循的一些规范</p>
+<p>分类：</p>
+<p>第一范式(1NF):每一列都是不可分割的原子数据项</p>
+<p>第二范式(2NF)：在1NF的基础下，非码属性必须完全依赖于候选码(1NF基础上消除非主属性对主码的部分导函数依赖)</p>
+<p>函数依赖：A–&gt;B  如果通过A属性(属性组)的值，可以确定唯一B属性的值，则称B依赖于A</p>
+<p>学号–&gt;姓名   (学号，课程名称)—— &gt;分数</p>
+<p>完全函数依赖：A–&gt;B  如果A是一个属性组，则B属性值得确定需要依赖于A属性组中所有的属性值</p>
+<p>(学号，课程名称)—— &gt;分数</p>
+<p>部分函数依赖：A–&gt;B 如果A是一个属性组，则B属性值得确定需要依赖于A属性组中某一些值即可</p>
+<p>(学号，课程名称)—— &gt;姓名</p>
+<p>传递函数依赖：A–&gt;B,B–&gt;C   如果通过A属性(属性组)的值，可以确定唯一B属性的值，在通过B属性(属性组)的值可以确定唯一C的属性的值，则称C传递函数依赖于A</p>
+<p>学号–&gt;系名  系名–&gt;系主任</p>
+<p>码：如果在一张表中，一个属性或属性组，被其他所有属性所完全依赖，则称这个属性(属性组)为该表的码</p>
+<p>(学号，课程名称)</p>
+<p>主属性：码属性组中的所有属性</p>
+<p>非主属性：除过码属性组的属性</p>
+<p><img src="C:\Users\Swsqa\AppData\Roaming\Typora\typora-user-images\image-20240723090013811.png" alt="image-20240723090013811"></p>
+<p>第三范式(3NF)：在2NF基础上，任何非主属性不依赖于其他非主属性(2NF基础上消除传递依赖)</p>
+<p><strong><img src="C:\Users\Swsqa\AppData\Roaming\Typora\typora-user-images\image-20240723090024606.png" alt="image-20240723090024606"></strong></p>
+<h5 id="3-数据库的备份和还原"><a href="#3-数据库的备份和还原" class="headerlink" title="3.数据库的备份和还原"></a>3.数据库的备份和还原</h5><p>命令行：</p>
+<p>备份：mysqldump -u用户名 -p密码  数据库名称 &gt; 保存的路径</p>
+<p>还原：登录数据库</p>
+<p>​			创建数据库</p>
+<p>​			使用数据库</p>
+<p>​			执行文件。 source 文件路径</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">sws</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2024/09/11/4-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81MySQL%E3%80%81SQL%E5%AD%A6%E4%B9%A0/">http://example.com/2024/09/11/4-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81MySQL%E3%80%81SQL%E5%AD%A6%E4%B9%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/09/11/5-JDBC%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E3%80%81%E5%AF%B9JDBC%E4%B8%AD%E5%90%84%E4%B8%AA%E6%8E%A5%E5%8F%A3%E5%92%8C%E7%B1%BB%E8%AF%A6%E8%A7%A3/" title="5.JDBC基本概念、快速入门、对JDBC中各个接口和类详解"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">5.JDBC基本概念、快速入门、对JDBC中各个接口和类详解</div></div></a></div><div class="next-post pull-right"><a href="/2024/09/11/3-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E3%80%81%E4%BA%8B%E5%8A%A1%E3%80%81DCL/" title="3.多表查询、事务、DCL"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">3.多表查询、事务、DCL</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/tx.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">sws</div><div class="author-info__description">lixi</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81MySQL%E3%80%81SQL%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">数据库的基本概念、MySQL、SQL学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.数据库的基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="toc-number">1.0.2.</span> <span class="toc-text">MySQL配置：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#MySQL%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8"><span class="toc-number">1.0.2.0.1.</span> <span class="toc-text">MySQL服务启动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MySQL%E7%99%BB%E5%BD%95"><span class="toc-number">1.0.2.0.2.</span> <span class="toc-text">MySQL登录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MySQL%E9%80%80%E5%87%BA"><span class="toc-number">1.0.2.0.3.</span> <span class="toc-text">MySQL退出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.0.3.</span> <span class="toc-text">MySQL目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL"><span class="toc-number">1.0.4.</span> <span class="toc-text">#SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFSQL%EF%BC%9F"><span class="toc-number">1.0.4.0.1.</span> <span class="toc-text">1.什么是SQL？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-SQL%E9%80%9A%E7%94%A8%E8%AF%AD%E6%B3%95"><span class="toc-number">1.0.4.0.2.</span> <span class="toc-text">2.SQL通用语法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-SQL%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.0.4.0.3.</span> <span class="toc-text">3.SQL的分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DDL-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%81%E8%A1%A8"><span class="toc-number">1.0.5.</span> <span class="toc-text">##DDL:操作数据库、表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9ACRUD"><span class="toc-number">1.0.5.1.</span> <span class="toc-text">1.操作数据库：CRUD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%93%8D%E4%BD%9C%E8%A1%A8"><span class="toc-number">1.0.5.2.</span> <span class="toc-text">2.操作表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DML%EF%BC%9A%E5%A2%9E%E5%88%A0%E6%94%B9%E8%A1%A8%E4%B8%AD%E6%95%B0%E6%8D%AE"><span class="toc-number">1.0.6.</span> <span class="toc-text">##DML：增删改表中数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="toc-number">1.0.6.0.1.</span> <span class="toc-text">1.添加数据：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-number">1.0.6.0.2.</span> <span class="toc-text">2.删除数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="toc-number">1.0.6.0.3.</span> <span class="toc-text">3.修改数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DQL-%E6%9F%A5%E8%AF%A2%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%AE%B0%E5%BD%95"><span class="toc-number">1.0.7.</span> <span class="toc-text">##DQL:查询表中的记录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E8%AF%AD%E6%B3%95"><span class="toc-number">1.0.7.0.1.</span> <span class="toc-text">1.语法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="toc-number">1.0.7.0.2.</span> <span class="toc-text">2.基础查询：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.0.7.0.3.</span> <span class="toc-text">3.条件查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E6%8E%92%E5%BA%8F%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.0.7.0.4.</span> <span class="toc-text">4.排序查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">1.0.7.0.5.</span> <span class="toc-text">5.聚合函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.0.7.0.6.</span> <span class="toc-text">6.分组查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.0.7.0.7.</span> <span class="toc-text">7.分页查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.0.7.0.8.</span> <span class="toc-text">8.约束</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1%EF%BC%89%E4%B8%BB%E9%94%AE%E7%BA%A6%E6%9D%9F-primary-key"><span class="toc-number">1.0.7.0.8.1.</span> <span class="toc-text">1）主键约束 primary key</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2%EF%BC%89%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9F-not-null"><span class="toc-number">1.0.7.0.8.2.</span> <span class="toc-text">2）非空约束 not null</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3%EF%BC%89%E5%94%AF%E4%B8%80%E7%BA%A6%E6%9D%9F-unique-%E6%9F%90%E4%B8%80%E5%88%97%E4%B8%8D%E8%83%BD%E9%87%8D%E5%A4%8D"><span class="toc-number">1.0.7.0.8.3.</span> <span class="toc-text">3）唯一约束 unique  某一列不能重复</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4%EF%BC%89%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F-foreign-key"><span class="toc-number">1.0.7.0.8.4.</span> <span class="toc-text">4）外键约束 foreign key</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.0.8.</span> <span class="toc-text">数据库的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%A4%9A%E8%A1%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.0.8.0.1.</span> <span class="toc-text">1.多表之间的关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E7%9A%84%E8%8C%83%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.0.8.0.2.</span> <span class="toc-text">2.数据库设计的范式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A4%87%E4%BB%BD%E5%92%8C%E8%BF%98%E5%8E%9F"><span class="toc-number">1.0.8.0.3.</span> <span class="toc-text">3.数据库的备份和还原</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/09/11/24-Maven/" title="24.Maven"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="24.Maven"/></a><div class="content"><a class="title" href="/2024/09/11/24-Maven/" title="24.Maven">24.Maven</a><time datetime="2024-09-11T11:01:29.000Z" title="Created 2024-09-11 19:01:29">2024-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/11/23-redis/" title="23.redis"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="23.redis"/></a><div class="content"><a class="title" href="/2024/09/11/23-redis/" title="23.redis">23.redis</a><time datetime="2024-09-11T11:01:17.000Z" title="Created 2024-09-11 19:01:17">2024-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/11/22-AJAX%E3%80%81JSON/" title="22.AJAX、JSON"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="22.AJAX、JSON"/></a><div class="content"><a class="title" href="/2024/09/11/22-AJAX%E3%80%81JSON/" title="22.AJAX、JSON">22.AJAX、JSON</a><time datetime="2024-09-11T11:01:07.000Z" title="Created 2024-09-11 19:01:07">2024-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/11/21-Jquery%E9%AB%98%E7%BA%A7%EF%BC%9A%E5%8A%A8%E7%94%BB%E3%80%81%E9%81%8D%E5%8E%86%E3%80%81%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E3%80%81%E6%A1%88%E4%BE%8B%E3%80%81%E6%8F%92%E4%BB%B6/" title="21.Jquery高级：动画、遍历、事件绑定、案例、插件"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="21.Jquery高级：动画、遍历、事件绑定、案例、插件"/></a><div class="content"><a class="title" href="/2024/09/11/21-Jquery%E9%AB%98%E7%BA%A7%EF%BC%9A%E5%8A%A8%E7%94%BB%E3%80%81%E9%81%8D%E5%8E%86%E3%80%81%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E3%80%81%E6%A1%88%E4%BE%8B%E3%80%81%E6%8F%92%E4%BB%B6/" title="21.Jquery高级：动画、遍历、事件绑定、案例、插件">21.Jquery高级：动画、遍历、事件绑定、案例、插件</a><time datetime="2024-09-11T11:00:59.000Z" title="Created 2024-09-11 19:00:59">2024-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/11/20JQuery/" title="20JQuery"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="20JQuery"/></a><div class="content"><a class="title" href="/2024/09/11/20JQuery/" title="20JQuery">20JQuery</a><time datetime="2024-09-11T11:00:49.000Z" title="Created 2024-09-11 19:00:49">2024-09-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By sws</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
